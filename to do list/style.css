@@ -1,0 +1,28 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: brown;
+    gap: 10vh;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    width: 50vh;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.582);
+    border-radius: 1vh;
+    padding: 24px;
+    gap: 10px;
+}
+.res {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
