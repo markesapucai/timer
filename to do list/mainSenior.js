@@ -28,13 +28,44 @@ function addTask(list) { //Criar botão e o text conttent
     list.appendChild(deleteButton);
 }
 
-
 function createTask() {
     const list = document.createElement('li')
     res.appendChild(list)
     addTask(list);
+    clearTask();
+    saveTask();
 }
 document.addEventListener('click', (e) => {
     const el = e.target;
-    (el.classList.contains('delete'))? res.removeChild(el.parentNode) : '';
+    if (el.classList.contains('delete')) {
+        res.removeChild(el.parentNode);
+        saveTask();  
+    } 
 });
+
+function clearTask() {
+    inputTask.value = '';
+    inputTask.focus();
+}
+
+function saveTask() {
+    const taskList = res.querySelectorAll('li');
+    const vetorTask = [];
+    for (let res of taskList) {
+        let taskText = res.innerText
+        taskText = taskText.replace('Apagar', '').trim();
+        vetorTask.push(taskText)
+    }
+    const vetorTaskJSON = JSON.stringify(vetorTask);
+    localStorage.setItem('res', vetorTaskJSON);
+}
+
+function addSaveTask() {
+    const tarefas = localStorage.getItem('res');
+    const tarefasLista = JSON.parse(tarefas);
+
+    for (let list of tarefasLista) {
+        createTask(list);
+    }
+}
+addSaveTask();
